@@ -1,0 +1,233 @@
+body {
+    margin: auto;
+    font-family: "Segoe UI";
+    display: flex;
+    align-items: stretch;
+    min-width: 30rem;
+    flex-direction: row;
+}
+
+.form {
+    background: rgba(0, 0, 0, 0.15);
+    padding: 0.25rem;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    height: 3rem;
+    box-sizing: content-box;
+    backdrop-filter: blur(10px);
+}
+
+.chat {
+    width: 100%;
+    overflow: scroll;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-bottom: 3.5rem;
+}
+
+.messages {
+    list-style-type: none;
+    margin-left: 20rem;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.messages>ul {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.7rem;
+}
+
+.messages>ul:nth-child(odd) {
+    background: #efefef;
+}
+
+.chat,
+.form,
+.messages {
+    left: 20rem;
+    transition: transform left 0.3s ease-in-out;
+    animation-name: slide-right;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-right {
+    0% {
+        left: 5rem;
+    }
+
+    100% {
+        left: 20rem;
+    }
+}
+
+
+
+.messages.open,
+.chat.open,
+.form.open {
+    left: 5rem;
+    animation-name: slide-left;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-left {
+    0% {
+        left: 20rem;
+    }
+
+    100% {
+        left: 5rem;
+    }
+}
+
+.input {
+    border: none;
+    flex-grow: 1;
+    border-radius: 2rem;
+    word-wrap: normal;
+    padding: 1rem;
+    margin: 0.25rem;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.form>button {
+    background: #333;
+    border: none;
+    padding: 0 1rem;
+    margin: 0.25rem;
+    border-radius: 3px;
+    outline: none;
+    color: #fff;
+}
+
+
+
+.umessage {
+    background: #efefef;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    border: 0.2rem solid #696969;
+    border-radius: 0.5rem;
+    word-wrap: normal;
+    overflow-wrap: anywhere;
+    align-items: start;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.text {
+    font-size: 1rem;
+    word-wrap: normal;
+    overflow-wrap: anywhere;
+}
+
+.data {
+    font-size: 0.7rem;
+}
+
+.sidebar {
+    width: 20rem;
+    height: 100%;
+    background-color: #efefef;
+    color: #000000;
+    position: fixed;
+    display: flex;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    text-decoration: none;
+    transform: translateX(0rem);
+    /* initially hidden */
+    transition: transform 0.3s ease-in-out;
+    /* smooth transition */
+}
+
+.sidebar.open {
+    transform: translateX(-15rem);
+    /* visible when "open" class is present */
+}
+
+.sidebar::after {
+    width: 5rem;
+    height: 100%;
+    content: '';
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none !important;
+    color: #000000;
+}
+
+.return-button {
+    align-self: end;
+    animation-name: none;
+    margin: 1rem;
+    transform: translatey(-10rem);
+    /* initially hidden */
+    transition: transform 0.3s ease-in-out;
+    /* smooth transition */
+}
+
+.return-button.open {
+    transform: translateY(0rem);
+    /* visible when "open" class is present */
+}
+
+.menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.menu li a {
+    display: block;
+    padding: 10px 20px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    border-left: 3px solid transparent;
+}
+
+.menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left-color: #0088cc;
+}
+
+
+.screen {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
