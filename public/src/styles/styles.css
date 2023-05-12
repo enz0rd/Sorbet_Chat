@@ -4,11 +4,17 @@ body {
     display: flex;
     align-items: stretch;
     min-width: 30rem;
+    background-color: #fff;
     flex-direction: row;
 }
 
+body.dark-mode {
+    filter: invert(100%);
+    background-color: #000000;
+}
+
 .form {
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(214, 214, 214, 0.9);
     padding: 0.25rem;
     position: fixed;
     bottom: 0;
@@ -16,16 +22,15 @@ body {
     display: flex;
     height: 3rem;
     box-sizing: content-box;
-    backdrop-filter: blur(10px);
 }
 
 .chat {
-    width: 100%;
+    width: auto;
     overflow: scroll;
     position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    right: 0rem;
+    top: 0rem;
+    bottom: 0rem;
     margin-bottom: 3.5rem;
 }
 
@@ -112,8 +117,6 @@ body {
     outline: none;
     color: #fff;
 }
-
-
 
 .umessage {
     background: #efefef;

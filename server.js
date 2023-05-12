@@ -142,9 +142,11 @@ io.on("connection", (socket) => {
     io.emit("disconnection", `${socket.name} disconnected`);
   });
   socket.on("message", (data) => {
+    var now = new Date();
     const message = {
       name: socket.name,
       text: data.text,
+      data: now.toLocaleString(),
     };
     io.emit("message", message);
   });

@@ -21,7 +21,7 @@ socket.on("message", function (message) {
   listItem.innerHTML = `<div class="umessage">
                                         <ul class="name">${message.name}</ul>
                                         <ul class="text">${message.text}</ul>
-                                        <ul class="data">${data.toLocaleString()}</ul>
+                                        <ul class="data">${message.data}</ul>
                                     </div>`;
   messages.appendChild(listItem);
   document
@@ -72,4 +72,10 @@ toggleoffButton.addEventListener("click", function () {
   chat.classList.toggle("open");
   formclass.classList.toggle("open");
   messagesclass.classList.toggle("open");
+});
+
+const body = document.getElementById("body");
+const darkmode = document.getElementById("dark-mode");
+darkmode.addEventListener("click", function toggleDarkMode() {
+  body.classList.toggle("dark-mode");
 });
