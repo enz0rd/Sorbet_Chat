@@ -19,14 +19,12 @@ form.addEventListener("submit", function (e) {
 socket.on("message", function (message) {
   const listItem = document.createElement("ul");
   listItem.innerHTML = `<div class="umessage">
-                                        <ul class="name">${message.name}</ul>
-                                        <ul class="text">${message.text}</ul>
-                                        <ul class="data">${message.data}</ul>
-                                    </div>`;
+                            <ul class="name">${message.name}</ul>
+                            <ul class="text">${message.text}</ul>
+                            <ul class="data">${message.data}</ul>
+                        </div>`;
   messages.appendChild(listItem);
-  document
-    .getElementById("chat")
-    .scrollTo(document.getElementById("chat").scrollIntoView());
+  document.getElementById("chat").scrollTo(0, messages.scrollHeight);
 });
 
 socket.on("connection", function (data) {

@@ -24,6 +24,20 @@ body.dark-mode {
     box-sizing: content-box;
 }
 
+.version {
+    position: fixed;
+    top: 0;
+    align-self: center;
+    font-size: 0.8rem;
+    color: #696969
+}
+
+.dev {
+    align-self: center;
+    font-size: 0.6rem;
+    color: #696969
+}
+
 .chat {
     width: auto;
     overflow: scroll;
