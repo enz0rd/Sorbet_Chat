@@ -67,6 +67,7 @@ function startSocket(nickname) {
                               <ul class="text">${message.text}</ul>
                               <ul class="data">${message.data}</ul>
                           </div>`;
+    
     messages.appendChild(listItem);
     document.getElementById("chat").scrollTo(0, messages.scrollHeight);
   });
