@@ -1,155 +1,65 @@
+const bodyParser = require('body-parser');
 const express = require("express");
 const app = express();
+
 const http = require("http");
 const server = http.createServer(app);
+
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-app.use(express.static("public"));
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/src/pages/index.html");
-});
-
-const names = [
-  "John",
-  "Emma",
-  "Noah",
-  "Olivia",
-  "Liam",
-  "Ava",
-  "William",
-  "Sophia",
-  "Mason",
-  "Isabella",
-  "James",
-  "Mia",
-  "Benjamin",
-  "Charlotte",
-  "Jacob",
-  "Amelia",
-  "Michael",
-  "Harper",
-  "Ethan",
-  "Evelyn",
-  "Daniel",
-  "Abigail",
-  "Matthew",
-  "Emily",
-  "Aiden",
-  "Elizabeth",
-  "Henry",
-  "Avery",
-  "Joseph",
-  "Ella",
-  "Samuel",
-  "Sofia",
-  "David",
-  "Madison",
-  "Jackson",
-  "Scarlett",
-  "Logan",
-  "Victoria",
-  "Anthony",
-  "Aria",
-  "Christopher",
-  "Grace",
-  "Gabriel",
-  "Chloe",
-  "Andrew",
-  "Camila",
-  "Lucas",
-  "Penelope",
-  "Joshua",
-  "Riley",
-  "Nicholas",
-  "Luna",
-  "Nathan",
-  "Layla",
-  "Ryan",
-  "Ellie",
-  "Elijah",
-  "Aurora",
-  "Christian",
-  "Nora",
-  "Isaac",
-  "Zoe",
-  "Owen",
-  "Hannah",
-  "Caleb",
-  "Lily",
-  "Landon",
-  "Addison",
-  "Jonathan",
-  "Aaliyah",
-  "Cameron",
-  "Stella",
-  "Charles",
-  "Natalie",
-  "Isabella",
-  "Zoey",
-  "Henry",
-  "Leah",
-  "Josiah",
-  "Hazel",
-  "Isaiah",
-  "Violet",
-  "Ezra",
-  "Aubrey",
-  "Angel",
-  "Audrey",
-  "Adam",
-  "Ayden",
-  "Arianna",
-  "Aidan",
-  "Lucy",
-  "Adrian",
-  "Bella",
-  "Alex",
-  "Brooklyn",
-  "Alejandro",
-  "Claire",
-  "Alexis",
-  "Savannah",
-  "Alice",
-  "Sophie",
-];
-
-randomint = () => {
-  var NUMERO = Math.random().toString(8).substring(8, 10);
-  while (NUMERO == 0) {
-    NUMERO = Math.random().toString(8).substring(8, 10);
-  }
-  if (NUMERO.charAt(0) === "0") {
-    NUMERO = NUMERO.replace("0", "");
-  }
-  return NUMERO;
-};
+var users = {}
 
 io.on("connection", (socket) => {
-  const name = `${names[randomint()]}#${Math.random()
-    .toString(8)
-    .substring(2, 6)}`;
-  socket.name = name;
+  console.log(socket.handshake.query)
+  
   io.emit(
     "connection",
     (data = {
-      name: name,
-      msg: `${socket.name} has connected`,
+      msg: `${socket.handshake.query.username} has connected`,
     })
   );
+
+
   socket.on("disconnect", () => {
-    io.emit("disconnection", `${socket.name} disconnected`);
+    io.emit("disconnection", `${socket.handshake.query.username} disconnected`);
+    delete users[socket.id];
+    io.emit('usersChange', users)
+
+    socket.broadcast.emit('user disconnect', {name: socket.handshake.query.username, id: socket.id })
   });
+
+  users[socket.id] = {
+    name: socket.handshake.query.username,
+    id: socket.id
+  }
+
+  io.emit('usersChange', users)
+
+  var newuser = { 
+    name: socket.handshake.query.username, 
+    id: socket.id,
+    msg: ` has connected`
+  }
+
+  socket.broadcast.emit('new user', newuser)
+
   socket.on("message", (data) => {
     var now = new Date();
     const message = {
-      name: socket.name,
+      name: socket.handshake.query.username,
       text: data.text,
       data: now.toLocaleString(),
     };
     io.emit("message", message);
   });
+});
+
+
+app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/src/pages/index.html");
 });
 
 server.listen(3000, () => {

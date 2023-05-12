@@ -3,7 +3,7 @@ body {
     font-family: "Segoe UI";
     display: flex;
     align-items: stretch;
-    min-width: 30rem;
+    min-width: 20rem;
     background-color: #fff;
     flex-direction: row;
 }
