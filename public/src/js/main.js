@@ -3,18 +3,46 @@ var socket;
 
 function realname() {
   var username = prompt("Como deseja ser chamado?")
+  while (username == '') {
+    var username = prompt("Como deseja ser chamado?")
+  }
 
   const realname = `${username}#${Math.random()
     .toString(8)
     .substring(2, 6)}`;
 
-  
+  getHistory();
   startSocket(realname);
 }
 realname();
 
-function startSocket(nickname) {
+function getHistory() {
+  fetch('../../messages/history.txt')
+    .then(response => response.text())
+    .then(response => {
+      var newresponse = response.replace(/\\/g, '')
+      var history = newresponse.split('\n')
+      for(i=0; i < history.length; i++) {
+        history[i] = JSON.parse(history[i])
+        console.log(history[i])
+        const listItem = document.createElement("ul");
+        listItem.innerHTML = `<div class="umessage">
+                                  <ul class="name">${history[i].name}</ul>
+                                  <ul class="text">${history[i].text}</ul>
+                                  <ul class="data">${history[i].data}</ul>
+                              </div>`;
+        
+        messages.appendChild(listItem);
+        document.getElementById("chat").scrollTo(0, messages.scrollHeight);
+      }
+    })
+    .catch(error => console.error(error));
+}
 
+// Chama a função para obter o histórico assim que a página carrega
+window.onload = getHistory;
+
+function startSocket(nickname) {
   var messages = document.getElementById("messages");
   var form = document.getElementById("form");
   var input = document.getElementById("input");

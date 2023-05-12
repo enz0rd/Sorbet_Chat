@@ -8,6 +8,10 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+const env = require('./.env')
+
+const fs = require('fs');
+
 var users = {}
 
 io.on("connection", (socket) => {
@@ -51,6 +55,12 @@ io.on("connection", (socket) => {
       text: data.text,
       data: now.toLocaleString(),
     };
+    fs.appendFile('./public/messages/history.txt', `${JSON.stringify(message)} \n`, (err) => {
+      if (err) throw err;
+      else {
+        console.log(`mensagem: ${JSON.stringify(message)} gravada`)
+      }
+    })
     io.emit("message", message);
   });
 });
@@ -62,6 +72,6 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/src/pages/index.html");
 });
 
-server.listen(3000, () => {
-  console.log("listening on http://localhost:3000");
+server.listen(PORT, SERVERIP, () => {
+  console.log(`listening on http://${SERVERIP}:${PORT}`);
 });
