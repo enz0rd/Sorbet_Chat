@@ -8,6 +8,10 @@ body {
     flex-direction: row;
 }
 
+.svg {
+    width: 3rem;
+}
+
 body.dark-mode {
     filter: invert(100%);
     background-color: #000000;
