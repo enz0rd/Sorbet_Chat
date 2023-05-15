@@ -120,7 +120,10 @@ const formclass = document.querySelector(".form");
 const messagesclass = document.querySelector(".messages");
 const sidebar = document.querySelector(".sidebar");
 const toggleButton = document.querySelector(".hide");
+
+const botoesFuncoes = document.getElementById('menu');
 const toggleoffButton = document.getElementById("hide");
+const darkButton = document.getElementById("dark-mode");
 
 // Add a click event listener to the toggle button
 toggleButton.addEventListener("click", function () {
@@ -129,6 +132,7 @@ toggleButton.addEventListener("click", function () {
   chat.classList.toggle("open");
   formclass.classList.toggle("open");
   messagesclass.classList.toggle("open");
+  botoesFuncoes.classList.toggle('open');
 });
 
 // Add a click event listener to the toggle button
@@ -138,7 +142,9 @@ toggleoffButton.addEventListener("click", function () {
   chat.classList.toggle("open");
   formclass.classList.toggle("open");
   messagesclass.classList.toggle("open");
+  botoesFuncoes.classList.toggle('open');
 });
+
 
 const body = document.getElementById("body");
 const darkmode = document.getElementById("dark-mode");

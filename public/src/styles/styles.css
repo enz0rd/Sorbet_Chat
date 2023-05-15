@@ -6,6 +6,7 @@ body {
     min-width: 20rem;
     background-color: #fff;
     flex-direction: row;
+    transition: 0.3s;
 }
 
 .svg {
@@ -15,6 +16,7 @@ body {
 body.dark-mode {
     filter: invert(100%);
     background-color: #000000;
+    transition: 0.3s;
 }
 
 .form {
@@ -207,6 +209,10 @@ body.dark-mode {
     flex-direction: column;
 }
 
+#menu.open {
+    display: none;
+}
+
 a {
     text-decoration: none !important;
     color: #000000;
@@ -243,7 +249,7 @@ a {
 
 .menu li a:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    border-left-color: #0088cc;
+    border-left-color: #000000;
 }
 
 
