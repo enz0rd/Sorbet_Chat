@@ -11,7 +11,6 @@ function realname() {
     .toString(8)
     .substring(2, 6)}`;
 
-  getHistory();
   startSocket(realname);
 }
 realname();
