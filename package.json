@@ -8,12 +8,13 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "install": "npm i body-parser express fs nodemon socket.io"
   },
-  "name": "dochat",
-  "version": "1.0.0",
+  "name": "Sorbet",
+  "version": "0.0.05",
   "main": "server.js",
-  "author": "",
+  "author": "enz0rd",
   "license": "ISC",
   "description": ""
 }
