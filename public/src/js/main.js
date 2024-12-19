@@ -58,6 +58,10 @@ function startSocket(nickname) {
   });
   
   socket = io({
+    cors: {
+      origin: '*',
+      methods: ['GET', 'POST'],
+    },
     query: {
       "username": nickname
     }
