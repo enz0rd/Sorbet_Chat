@@ -27,5 +27,5 @@ Thanks for checking out, follow me in my social media and see my other projects!
 
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/enz0rd)
 [![Linktree](https://img.shields.io/badge/Linktree-%233EAA40.svg?style=for-the-badge&logo=linktree&logoColor=white)](https://linktr.ee/megab_07)
-[![Other Projects](https://img.shields.io/badge/GitHub-%23181717.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/enz0rd?tab=repositories)
 [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=facebook&logoColor=white)](https://facebook.com/enzorossid)
+[![Other Projects](https://img.shields.io/badge/Other_Projects-%23181717.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/enz0rd?tab=repositories)
